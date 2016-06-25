@@ -13,18 +13,33 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'gs-accessing-data-rest'
+    baseName = 'antelope-service'
     version = '0.1.0'
+   	excludes = ['**/application.yml']
+}
+
+task('execJar', type:Jar, dependsOn: 'jar') {
+	baseName = 'antelope-service'
+	version =  '0.0.0'
+	classifier = 'exec'
+	from sourceSets.main.output
+}
+
+bootRepackage  {
+	withJarTask = tasks['execJar']
 }
 
 repositories {
+	mavenLocal()
     mavenCentral()
+    maven { url "http://repo.spring.io/release" }
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+	compile("org.springframework.boot:spring-boot-starter")
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("com.h2database:h2")

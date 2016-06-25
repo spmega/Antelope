@@ -1,4 +1,4 @@
-package hello;
+package com.vpath.antelopeservice;
 
 import java.util.List;
 

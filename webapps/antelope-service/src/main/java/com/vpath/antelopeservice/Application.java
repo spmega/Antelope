@@ -1,4 +1,4 @@
-package hello;
+package com.vpath.antelopeservice;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
